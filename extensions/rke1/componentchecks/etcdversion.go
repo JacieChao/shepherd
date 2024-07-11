@@ -29,7 +29,7 @@ func CheckETCDVersion(client *rancher.Client, nodes []*nodes.Node, clusterID str
 		if etcdRole == true {
 			for _, node := range nodes {
 				if strings.Contains(node.PublicIPAddress, externalIP) {
-					command := "docker exec etcd etcdctl version"
+					command := "sudo docker exec etcd etcdctl version"
 					output, err := node.ExecuteCommand(command)
 					if err != nil {
 						return []string{}, err

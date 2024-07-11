@@ -127,7 +127,7 @@ func CreateNodes(client *rancher.Client, rolesPerPool []string, quantityPerPool 
 			if len(provisioningInputConfig.RKE1KubernetesVersions) > 0 {
 				// wait for docker installed by cloud-init
 				if err = wait.ExponentialBackoff(backoff, func() (bool, error) {
-					_, err := cvmNode.ExecuteCommand("docker ps")
+					_, err := cvmNode.ExecuteCommand("sudo docker ps")
 					if err != nil {
 						logrus.Infof("wait for node [%v] install docker", cvmNode.NodeID)
 						return false, nil
